@@ -1,0 +1,124 @@
+/*Default de Cordova*/
+body {
+    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+    background-color: azure;
+}
+
+/*Colores*/
+:root{
+  --verdeClaro: #69e781;
+  --azulAgradable: #7092c4;
+  --naranjaSGA: #ffb04e;
+  --grisClaro: #f2f2f2;
+  --azulSGA: #487dff;
+}
+
+/*HELADITOS START*/
+input{
+  box-shadow: 3px 0px 21px -10px !important;
+}
+
+select{
+  box-shadow: 3px 0px 21px -10px !important;
+}
+
+/*Ultima compra y venta de pant main*/
+.fechas{
+  display: block;
+}
+
+/*Override clases bootstrap*/
+.btn-primary{
+  background-color: aquamarine !important;
+  border-color: #dff0d8 !important;
+  color: #3d669b !important;
+}
+
+.btn-danger{
+  background-color: #f7817e !important;
+  border-color: #e27c78 !important;
+}
+
+/*Divs de sabores en pant main*/
+.helado{
+  border: solid 1px;
+  border-radius: 20px;
+  margin: 10px 10px;
+  background-color: aquamarine;
+  box-shadow: 10px 6px 21px -10px;
+}
+.helado-nombre{
+  margin-left: 5px;
+  display: inline-block;
+}
+.helado-hay{
+  margin-left: 10px; 
+}
+.helado-precio{
+  float: right;
+  margin-right: 10px; 
+}
+#sortable { 
+  list-style-type: none;
+  padding-left: 0px;
+}
+
+/*Menu de opciones superior*/
+#menu{
+  height: 50px;
+  top: 0;
+  width: 100%;
+  background-color: aquamarine;
+}
+.menu-btn{
+  text-align: center;
+  padding: 5px;
+  background-color: #ff9cc0;
+  margin: 10px;
+  border-radius: 5px;
+  border:solid 3px beige;
+  box-shadow: 3px 0px 21px -10px;
+}
+
+/*Reportes*/
+#reportConsol{
+  margin-top: 20px;
+  margin-bottom: 30px;
+  padding: 15px;
+  text-align: center;
+  border:solid 2px beige;
+  border-radius: 15px;
+  background-color: #ff9cc0;
+}
+#reportPorSabor{
+  margin-top: 20px;
+  margin-bottom: 30px;
+  padding: 15px;
+  text-align: center;
+  border:solid 2px beige;
+  border-radius: 15px;
+  background-color: #ff9cc0;
+}
+.bloqueSaborReporte{
+  border: solid 3px white;
+  border-radius: 20px;
+  padding: 10px 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: seashell;
+}
+.bloqueSaborReporte img{
+  margin-right: 10px;
+}
+
+/*HELADITOS END*/
+
+.oc{
+  display: none;
+}
+
+.allCenter{
+    text-align: center;
+}

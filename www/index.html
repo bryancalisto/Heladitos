@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset=”utf-8″/>
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    	<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+        <title>Heladitos</title>
+    </head>
+    <body>
+		<table id="menu">
+			<tr>
+				<td data-tag="crear"><div class="menu-btn"><img src="img/mixer.png"></div></td>
+				<td data-tag="main"><div class="menu-btn"><img src="img/helado.png"></div></td>
+				<td data-tag="report"><div class="menu-btn"><img src="img/money.png"></div></td>
+			</tr>
+		</table>
+
+		<!--Pantalla para manejar compras, ventas y bodega-->
+		<section id="main">
+			<div class="container">
+				<h2>Actualizar refri</h2>
+				<label data-tag="fUltCompra" class="fechas"></label>
+				<label data-tag="fUltVenta" class="fechas"></label>
+				<ul data-tag="helados" id="sortable"></ul>
+			</div>
+    	</section>
+
+    	<!--Pantalla para crear nuevos helados-->
+    	<section id="crear" class="oc">
+			<div class="container">
+				<h2>Crear helados</h2>
+				  <div class="form-group">
+				    <label for="sabor">Sabor</label>
+				    <input type="text" class="form-control"  id="sabor" placeholder="Sabor">
+				  </div>
+				  <div class="form-group">
+				    <label for="costo">Costo</label>
+				    <input type="number" class="form-control" id="costo" placeholder="Costo" min="0">
+				  </div>
+				   <div class="form-group">
+				    <label for="precio">Precio</label>
+				    <input type="number" class="form-control" id="precio" placeholder="Precio" min="0">
+				  </div>
+				  
+				  <button type="submit" class="btn btn-primary" data-tag="crearHelado">Crear</button>
+			</div>
+    	</section>
+
+    	<!--Pantalla de reportes-->
+    	<section id="report" class="oc">
+			<div class="container">
+				<h2>Mis ventas</h2>
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+						    <label for="dpFechaIni">Fecha inicial</label>
+						    <input type="text" class="form-control"  id="dpFechaIni" placeholder="Fecha inicial">
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+						    <label for="hpFechaIni">Hora inicial</label>
+						    <input type="time" class="form-control"  id="hpFechaIni" placeholder="Hora inicial">
+						  </div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+						    <label for="dpFechaFin">Fecha final</label>
+						    <input type="text" class="form-control" id="dpFechaFin" placeholder="Fecha final">
+						  </div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+						    <label for="hpFechaFin">Hora final</label>
+						    <input type="time" class="form-control" id="hpFechaFin" placeholder="Hora final">
+						  </div>
+					</div>
+				</div>
+				  
+			   <div class="form-group">
+			    <label for="selSabores">Sabor</label>
+			    <select class="form-control" id="selSabores">
+			    </select>
+			  </div>
+			  
+			  <button type="button" class="btn btn-primary" data-tag="consultar">Consultar</button>
+			  <button class="btn btn-danger" style="margin-left: 10px; float: right;" onclick="fileSys.limpiarContabilidad()">Limpiar contabilidad</button>
+
+			  <div id="reportConsol" class="oc" >
+			  	<div class="form-group">
+				    <label for="masVend" style="color: white;">Más vendido</label>
+				    <input type="text" class="form-control"  data-tag="masVend" id="masVend">
+				  </div>
+				  <div class="form-group">
+				    <label for="menosVend" style="color: white;">Menos vendido</label>
+				    <input type="text" class="form-control" data-tag="menosVend" id="menosVend">
+				  </div>
+			  	<div data-tag="infoContable" style="margin-top: 20px;"></div>
+
+			  	<div data-tag="bloquesSabores" style="margin-top: 20px;"></div>
+
+			  </div>
+			  <div class="oc" id="reportPorSabor"></div>
+			</div>
+    	</section>
+    	
+        <script type="text/javascript" src="js/jquery-3.4.1.js"></script>
+        <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="js/jquery.ui.touch-punch.min.js"></script>
+        <script type="text/javascript" src="js/popper.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/helado.js"></script>
+        <script type="text/javascript" src="js/fileSys.js"></script>
+        <script type="text/javascript" src="js/fecha.js"></script>
+        <script type="text/javascript" src="js/opcCrear.js"></script>
+        <script type="text/javascript" src="js/opcMain.js"></script>
+        <script type="text/javascript" src="js/opcReport.js"></script>
+    </body>
+</html>
