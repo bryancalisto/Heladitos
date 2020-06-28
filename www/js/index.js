@@ -19,9 +19,13 @@ var app = {
             dateFormat: "yy-mm-dd",
           });
 
+        // Calculamos y seteamos stock en pantalla main
+        helado.countStock();
+        opcMain.actStock();
+
         // Para permitir arrastrar y recolocar divs de sabores
-        $('#sortable').sortable();
-        $('.helado').draggable();
+        // $('#sortable').sortable();
+        // $('.helado').draggable();
 
         // Eventos MENU
         $('#menu').find('[data-tag="crear"]').click(() => app.showCrear());
@@ -33,6 +37,8 @@ var app = {
 
         // Eventos CREAR
         $('#crear').find('[data-tag="crearHelado"]').click(() => helado.crearTipoHelado());
+        $('#crear').find('[data-tag="sendCorreo"]').click(() => tester.sendCorreoDataLS());
+        $('#crear').find('[data-tag="btnImportarData"]').click(() => tester.importarData());
 
         // Eventos REPORT
         $('#report').find('[data-tag="consultar"]').click(() => opcReport.cargarReporte());

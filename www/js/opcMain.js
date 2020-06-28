@@ -34,6 +34,10 @@ var opcMain = {
 		else{
 			alert('Error al leer información de la base de datos');
 		}
+	},
+	// Actualizar stock
+	actStock(){
+		$('#main').find('[data-tag="stock"]').text('Stock: ' + helado.stock);
 	}
 
 }

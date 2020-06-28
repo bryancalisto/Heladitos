@@ -1,4 +1,5 @@
-var helado ={
+var helado = {
+	stock: 0,
 	crearTipoHelado(){
 
 		const nombre = $('#sabor').val().trim().replace(',','.');
@@ -116,7 +117,7 @@ var helado ={
 
 					// Registre compra
 					let valorCompra = Number(data.helados[i].c) * q; // Costo x cantidad comprada
-					console.log('valCompra: ' + valorCompra);
+					//console.log('valCompra: ' + valorCompra);
 
 					if(!this.registCompra(data.helados[i].n, valorCompra, q)){
 						alert('Error al registrar compra');
@@ -134,6 +135,10 @@ var helado ={
 					// Actualizamos fecha de ultima compra
 					this.setFechaCompra();
 
+					// Actualizamos stock
+					this.stock += Number(q);
+					opcMain.actStock();
+
 					break;
 				}
 			}
@@ -147,7 +152,7 @@ var helado ={
 			return;
 		// Obtenemos data
 		const nombre = elem.dataset.id;
-		console.log('input[data-id="' + nombre + '"]');
+		//console.log('input[data-id="' + nombre + '"]');
 		let q = $('input[data-id="' + nombre + '"]').val().trim();
 		q = q.replace('-','');
 		q = q.replace('+','');
@@ -175,9 +180,10 @@ var helado ={
 
 					// Registre venta
 					let valorVenta = Number(data.helados[i].p) * q; // Precio x cantidad vendida
-					console.log('val: ' + valorVenta);
+					let valorCompra = Number(data.helados[i].c) * q; // Costo x cantidad vendida
+					//console.log('val: ' + valorVenta);
 
-					if(!this.registVenta(data.helados[i].n, valorVenta, q)){
+					if(!this.registVenta(data.helados[i].n, valorVenta, valorCompra, q)){
 						alert('Error al registrar venta');
 						return;
 					}
@@ -193,6 +199,10 @@ var helado ={
 					// Actualizamos fecha de ultima venta
 					this.setFechaVenta();
 
+					// Actualizamos stock
+					this.stock -= Number(q);
+					opcMain.actStock();
+
 					break;
 				}
 			}
@@ -206,7 +216,7 @@ var helado ={
 	disminuirHeladoFree(elem){ 
 		// Obtenemos data
 		const nombre = elem.dataset.id;
-		console.log('input[data-id="' + nombre + '"]');
+		//console.log('input[data-id="' + nombre + '"]');
 		let q = $('input[data-id="' + nombre + '"]').val().trim();
 		q = q.replace('-','');
 		q = q.replace('+','');
@@ -239,6 +249,11 @@ var helado ={
 
 					$('[data-hay="' + nombre + '"]').text('Hay: ' + data.helados[i].s);
 					$('input[data-id="' + nombre + '"]').val('');
+
+					// Actualizamos stock
+					this.stock -= Number(q);
+					opcMain.actStock();
+
 					break;
 				}
 			}
@@ -251,7 +266,7 @@ var helado ={
 	aumentarHeladoFree(elem){ 
 		// Obtenemos data
 		const nombre = elem.dataset.id;
-		console.log('input[data-id="' + nombre + '"]');
+		//console.log('input[data-id="' + nombre + '"]');
 		let q = $('input[data-id="' + nombre + '"]').val().trim();
 		q = q.replace('-','');
 		q = q.replace('+','');
@@ -280,6 +295,11 @@ var helado ={
 
 					$('[data-hay="' + nombre + '"]').text('Hay: ' + data.helados[i].s);
 					$('input[data-id="' + nombre + '"]').val('');
+
+					// Actualizamos stock
+					this.stock += Number(q);
+					opcMain.actStock();
+
 					break;
 				}
 			}
@@ -288,13 +308,14 @@ var helado ={
 			alert('Error al leer información de la base de datos');
 		}
 	},
-	registVenta(nombre,valor,unidades){
+	registVenta(nombre,valorVenta,valorCompra,unidades){
 		const now = fecha.now();
 
 		const nueva = {
 			n: nombre,
 			u: unidades,
-			v: valor,
+			v: valorVenta,
+			c: valorCompra,
 			f: now
 		}
 
@@ -351,5 +372,19 @@ var helado ={
 	setFechaVenta(){
 		localStorage.setItem('fechaVenta', fecha.now());
 		$('#main').find('[data-tag="fUltVenta"]').text('Última venta:   ' + fecha.now());
+	},
+	/*Cuenta stock de helados existente*/
+	countStock(){
+		let data = fileSys.leer('data');
+		if(data != null){
+			for(let i = 0; i < data.helados.length; i++){
+				// Actualizamos cantidad y grabamos
+				this.stock += data.helados[i].s;
+			}
+		}
+		else{
+			alert('Error al leer stock');
+		}
 	}
+
 }

@@ -44,10 +44,11 @@ var opcReport = {
 		const horaIni = $('#hpFechaIni').val().trim();
 		const horaFin = $('#hpFechaFin').val().trim();
 		const nombreHelado = $('#selSabores :selected').val();
+		// const nombreHelado = 'crema'; // DEBUG
 
 
 		if(fechaIni == '' || fechaFin == '' || horaIni == '' || horaFin == ''){
-			alert('Ingrese fechas y horas');
+			alert('Ingrese fechas y horas, por favor');
 			return;
 		}
 
@@ -60,7 +61,7 @@ var opcReport = {
 
 		// this.hallarEntreFechas(fechaIni, fechaFin, 'compras');
 		// return;
-		//DEBUG END
+		// DEBUG END
 
 
 		// Vaciamos secciones donde se append nueva informacion
@@ -81,24 +82,35 @@ var opcReport = {
 			// 		n: 'crema',
 			// 		u: 3,
 			// 		v: 3,
+			// 		c: 1.50,
 			// 		f: '2020-06-14 11:00:00'
 			// 	},
 			// 	{
 			// 		n: 'limon',
 			// 		u: 2,
 			// 		v: 2,
+			// 		c: 1,
 			// 		f: '2020-06-14 11:15:00'
 			// 	},
 			// 	{
 			// 		n: 'azucarrr r rrrrr rr',
 			// 		u: 5,
 			// 		v: 5,
+			// 		c: 2.50,
+			// 		f: '2020-06-14 12:00:00'
+			// 	},
+			// 	{
+			// 		n: 'azucarrr r rrrrr rr',
+			// 		u: 2,
+			// 		v: 2,
+			// 		c: 1,
 			// 		f: '2020-06-14 12:00:00'
 			// 	},
 			// 	{
 			// 		n: 'limon',
-			// 		u: 1,
+			// 		u: 2,
 			// 		v: 2,
+			// 		c: 1,
 			// 		f: '2020-06-14 12:15:00'
 			// 	},
 			// ];
@@ -131,7 +143,7 @@ var opcReport = {
 
 			if(dataVendidosConsol.length == 0)
 			{
-				alert('No se han registrado transacciones');
+				alert('No se han registrado ventas');
 				return;
 			}
 
@@ -140,12 +152,14 @@ var opcReport = {
 			let mayor = {
 				n: '', // nombre
 				s: 0, // unidades (antes era stock)
-				v: 0 // valor
+				v: 0, // valor
+				c: 0 // costo
 			};
 			let menor = {
 				n: '',
 				s: 99999999,
-				v: 0
+				v: 0,
+				c: 0
 			};
 
 			for(let i = 0; i < dataVendidosConsol.length; i++){
@@ -155,9 +169,10 @@ var opcReport = {
 				for(let j = 0; j < contadores.length; j++){
 					if(contadores[j].n == dataVendidosConsol[i].n){
 						yaIncluido = true;
-						// Sume las ventas
+						// Sume las ventas y costo
 						contadores[j].s = Number(contadores[j].s) + dataVendidosConsol[i].u; // unidades
-						contadores[j].v = Number(contadores[j].v) + dataVendidosConsol[i].v; // valor
+						contadores[j].v = Number(contadores[j].v) + dataVendidosConsol[i].v; // valor ventas
+						// contadores[j].c = Number(contadores[j].c) + dataVendidosConsol[i].c; // costo
 						break;
 					}
 				}
@@ -167,7 +182,8 @@ var opcReport = {
 					let nuevo = {
 						n: dataVendidosConsol[i].n,
 						s: dataVendidosConsol[i].u,
-						v: dataVendidosConsol[i].v
+						v: dataVendidosConsol[i].v,
+						// c: dataVendidosConsol[i].c
 					}
 					contadores.push(nuevo);
 				}
@@ -178,11 +194,13 @@ var opcReport = {
 					menor.n = contadores[i].n;
 					menor.s = contadores[i].s;
 					menor.v = contadores[i].v;
+					// menor.c = contadores[i].c;
 				}
 				if(Number(contadores[i].s) > Number(mayor.s)){
 					mayor.n = contadores[i].n;
 					mayor.s = contadores[i].s;
 					mayor.v = contadores[i].v;
+					// mayor.c = contadores[i].c;
 				}
 			}
 
@@ -190,17 +208,18 @@ var opcReport = {
 			datosContables = {
 				uniComp: 0, // unidades compradas
 				uniVend: 0, // unidades vendidas
-				costo: 0, // valor costo
+				costo: 0, // costo total de unidades vendidas
 				ventas: 0 // valor ventas
 			}
 
 			for(let i = 0; i < dataVendidosConsol.length; i++){
 				datosContables.ventas += dataVendidosConsol[i].v;
+				//datosContables.costo += dataVendidosConsol[i].c; // Comentar si desea volver a version anteior
 				datosContables.uniVend += dataVendidosConsol[i].u;
 			}
 
 			for(let i = 0; i < dataCompradosConsol.length; i++){
-				datosContables.costo += dataCompradosConsol[i].v;
+				datosContables.costo += dataCompradosConsol[i].v; // Descomentar si desea volver a la ver ant
 				datosContables.uniComp += dataCompradosConsol[i].u;
 			}
 
@@ -236,30 +255,34 @@ var opcReport = {
 			let dataVendidosConsol = this.hallarEntreFechas(fechaIni, fechaFin,'ventas');
 			let dataCompradosConsol = this.hallarEntreFechas(fechaIni, fechaFin,'compras');
 
-			// DEBUG START
+			//DEBUG START
 			// dataVendidosConsol = [
 			// 	{
 			// 		n: 'crema',
-			// 		u: 4,
-			// 		v: 4,
+			// 		u: 3,
+			// 		v: 3,
+			// 		c: 1.50,
 			// 		f: '2020-06-14 11:00:00'
 			// 	},
 			// 	{
 			// 		n: 'limon',
 			// 		u: 2,
 			// 		v: 2,
+			// 		c: 1,
 			// 		f: '2020-06-14 11:15:00'
 			// 	},
 			// 	{
 			// 		n: 'azucarrr r rrrrr rr',
 			// 		u: 5,
 			// 		v: 5,
+			// 		c: 2.50,
 			// 		f: '2020-06-14 12:00:00'
 			// 	},
 			// 	{
 			// 		n: 'limon',
 			// 		u: 1,
 			// 		v: 2,
+			// 		c: 1,
 			// 		f: '2020-06-14 12:15:00'
 			// 	},
 			// ];
@@ -292,27 +315,28 @@ var opcReport = {
 
 			if(dataVendidosConsol.length == 0)
 			{
-				alert('No se han registrado transacciones');
+				alert('No se han registrado ventas');
 				return;
 			}
 
 			datosContables = {
 				uniComp: 0, // unidades compradas
 				uniVend: 0, // unidades vendidas
-				costo: 0, // valor costo
+				costo: 0, // costo total de las unidades vendidas
 				ventas: 0 // valor ventas
 			}
 
 			for(let i = 0; i < dataVendidosConsol.length; i++){
 				if(dataVendidosConsol[i].n == nombreHelado){
 					datosContables.ventas += dataVendidosConsol[i].v;
+					//datosContables.costo += dataVendidosConsol[i].c; // Comtente si desea volver a la version anterior
 					datosContables.uniVend += dataVendidosConsol[i].u;
 				}
 			}
 
 			for(let i = 0; i < dataCompradosConsol.length; i++){
 				if(dataCompradosConsol[i].n == nombreHelado){
-					datosContables.costo += dataCompradosConsol[i].v;
+					datosContables.costo += dataCompradosConsol[i].v; // Descomente para volver a la version anterior
 					datosContables.uniComp += dataCompradosConsol[i].u;
 				}
 			}

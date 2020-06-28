@@ -17,7 +17,7 @@ var fileSys = {
 				localStorage.setItem('data', JSON.stringify(data));
 			}
 			catch(ex){
-				alert('No se pudo crear base de datos (data)');
+				alert('No se pudo crear base de datos (data helados)');
 			}
 		}
 
@@ -75,7 +75,7 @@ var fileSys = {
 		}
 	},
 	limpiarContabilidad(){
-		if(!confirm('Estás segura?'))
+		if(!confirm('Estás segura de querer limpiar los datos de contabilidad?'))
 			return;
 
 		if(this.limpiarVentas() && this.limpiarCompras())

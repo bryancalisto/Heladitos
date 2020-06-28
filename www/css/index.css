@@ -15,6 +15,17 @@ body {
   --azulSGA: #487dff;
 }
 
+/*Letra Yellowtail*/
+@font-face {
+  font-family: 'Yellowtail';
+  src: url('Yellowtail-Regular.ttf'); /* IE9 Compat Modes */
+  src: url('Yellowtail-Regular.ttf') format('embedded-opentype'), /* IE6-IE8 */
+       url('Yellowtail-Regular.ttf') format('woff2'), /* Super Modern Browsers */
+       url('Yellowtail-Regular.ttf') format('woff'), /* Pretty Modern Browsers */
+       url('Yellowtail-Regular.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('Yellowtail-Regular.ttf') format('svg'); /* Legacy iOS */
+}
+
 /*HELADITOS START*/
 input{
   box-shadow: 3px 0px 21px -10px !important;
@@ -22,6 +33,13 @@ input{
 
 select{
   box-shadow: 3px 0px 21px -10px !important;
+}
+
+/*Titulos de pantallas*/
+.titulo{
+  font-family: 'Yellowtail';
+  font-size: 3em;
+  text-align: center;
 }
 
 /*Ultima compra y venta de pant main*/
@@ -43,7 +61,7 @@ select{
 
 /*Divs de sabores en pant main*/
 .helado{
-  border: solid 1px;
+  border: solid 1px #d1e0f1;
   border-radius: 20px;
   margin: 10px 10px;
   background-color: aquamarine;
@@ -52,9 +70,11 @@ select{
 .helado-nombre{
   margin-left: 5px;
   display: inline-block;
+  color: #c0c02a;
 }
 .helado-hay{
   margin-left: 10px; 
+  font-size: 12px;
 }
 .helado-precio{
   float: right;

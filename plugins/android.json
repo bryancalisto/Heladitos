@@ -12,6 +12,9 @@
     },
     "cordova-plugin-file": {
       "PACKAGE_NAME": "com.amor.heladitos"
+    },
+    "cordova-plugin-email": {
+      "PACKAGE_NAME": "com.amor.heladitos"
     }
   },
   "dependent_plugins": {}
