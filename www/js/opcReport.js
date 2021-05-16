@@ -172,7 +172,7 @@ var opcReport = {
 						// Sume las ventas y costo
 						contadores[j].s = Number(contadores[j].s) + dataVendidosConsol[i].u; // unidades
 						contadores[j].v = Number(contadores[j].v) + dataVendidosConsol[i].v; // valor ventas
-						// contadores[j].c = Number(contadores[j].c) + dataVendidosConsol[i].c; // costo
+						contadores[j].c = Number(contadores[j].c) + dataVendidosConsol[i].c; // costo
 						break;
 					}
 				}
@@ -183,7 +183,7 @@ var opcReport = {
 						n: dataVendidosConsol[i].n,
 						s: dataVendidosConsol[i].u,
 						v: dataVendidosConsol[i].v,
-						// c: dataVendidosConsol[i].c
+						c: dataVendidosConsol[i].c
 					}
 					contadores.push(nuevo);
 				}
@@ -194,13 +194,13 @@ var opcReport = {
 					menor.n = contadores[i].n;
 					menor.s = contadores[i].s;
 					menor.v = contadores[i].v;
-					// menor.c = contadores[i].c;
+					menor.c = contadores[i].c;
 				}
 				if(Number(contadores[i].s) > Number(mayor.s)){
 					mayor.n = contadores[i].n;
 					mayor.s = contadores[i].s;
 					mayor.v = contadores[i].v;
-					// mayor.c = contadores[i].c;
+					mayor.c = contadores[i].c;
 				}
 			}
 
@@ -214,12 +214,12 @@ var opcReport = {
 
 			for(let i = 0; i < dataVendidosConsol.length; i++){
 				datosContables.ventas += dataVendidosConsol[i].v;
-				//datosContables.costo += dataVendidosConsol[i].c; // Comentar si desea volver a version anteior
+				datosContables.costo += dataVendidosConsol[i].c; // Comentar si desea volver a version anteior
 				datosContables.uniVend += dataVendidosConsol[i].u;
 			}
 
 			for(let i = 0; i < dataCompradosConsol.length; i++){
-				datosContables.costo += dataCompradosConsol[i].v; // Descomentar si desea volver a la ver ant
+				// datosContables.costo += dataCompradosConsol[i].v; // Descomentar si desea volver a la ver ant
 				datosContables.uniComp += dataCompradosConsol[i].u;
 			}
 
