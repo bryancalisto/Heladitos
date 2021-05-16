@@ -3,7 +3,7 @@ This Android app bears a simple but useful inventory system that uses webview's 
 <br/>
 <h4>This app allows you to:</h4>
 <ul>
-<li>Create/remove flavors.</li>
+<li>Create flavors.</li>
 <li>Manage sell and cost values for every flavor.</li>
 <li>Add/remove stock.</li>
 <li>Get reports about sells, costs, yields, losses, most/least sold flavors.</li>
@@ -11,10 +11,10 @@ This Android app bears a simple but useful inventory system that uses webview's 
 
 <br/>
 <h4>Some screeshots</h4>
-![alt text](https://github.com/bryancalisto/Heladitos/blob/Master/crear_sabor.jpg?raw=true)
+<img src="crear_sabor.jpg" width="350" title="Create flavors">
 <br/>
-![alt text](https://github.com/bryancalisto/Heladitos/blob/Master/la_refri.jpg?raw=true)
+<img src="la_refri.jpg" width="350" title="Buy, sell, increase, diminish, use the multiplier to add big stocks">
 <br/>
-![alt text](https://github.com/bryancalisto/Heladitos/blob/Master/controles_reporte.jpg?raw=true)
+<img src="controles_reporte.jpg" width="350" title="Filter your data">
 <br/>
-![alt text](https://github.com/bryancalisto/Heladitos/blob/Master/reporte.jpg?raw=true)
+<img src="reporte.jpg" width="350" title="Make decisions with report info">
