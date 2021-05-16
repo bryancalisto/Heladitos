@@ -2,7 +2,7 @@
   "name": "com.amor.heladitos",
   "displayName": "Heladitos",
   "version": "1.0.0",
-  "description": "App para facilitar la administracion de la compra-venta de helados",
+  "description": "App para facilitar la administración de la compra/venta de helados",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

@@ -8,4 +8,10 @@
 /platforms
 
 # Optional to ignore plugin Git clones
-#/plugins
+/plugins
+
+node_modules
+temp
+*.DS_Store
+*.log
+*.swp
